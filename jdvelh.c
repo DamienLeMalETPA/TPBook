@@ -7,10 +7,10 @@ void main(){
 	scanf("%d",&choix_chemin);
 	switch (choix_chemin){
 		case 1 :
-			printf("Vous prenez le chemin en direction du Chateau du roi Licorne\n");
+			printf("Vous etes arrive au Chateau du roi Licorne\n");
 			break;
 		case 2 :
-			printf("Vous prenez le chemin en direction de la foret enchantee\n");
+			printf("Vous etes arrive a la foret enchantee\n");
 			break;
 	}
 	return 0;
