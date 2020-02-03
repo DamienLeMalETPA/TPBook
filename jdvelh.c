@@ -15,12 +15,14 @@ typedef struct Chapitre Chapitre;
 int deplacement(Chapitre * varChapitre, Chapitre * varChoix, Chapitre * varChoix2){
 	int test = 0;
 	int choix_chemin = 0;
-	printf("Depuis %s, vous pouvez aller a plusieurs endroits :\n[%d] %s \n[%d] %s \n",(*varChapitre).description,(*varChapitre).next[0], (*varChoix).description,(*varChapitre).next[1], (*varChoix2).description);
+	printf("Depuis %s, vous pouvez aller a plusieurs endroits :\n[%d] %s \n[%d] %s \n[0] Sauvegarder\n",(*varChapitre).description,(*varChapitre).next[0], (*varChoix).description,(*varChapitre).next[1], (*varChoix2).description);
 	while (test == 0){
 		scanf("%d",&choix_chemin);
 		if ((choix_chemin == (*varChapitre).next[0])||(choix_chemin == (*varChapitre).next[1])){
 			test = 1;
-		}else{
+		}else if (choix_chemin == 0){
+			return choix_chemin;
+		} else {
 			printf("Choix impossible !\n");
 		}
 	}
@@ -37,6 +39,14 @@ void bilan(int g,int p,int * g_p,int * pv_p){
 	}
 	printf("or : %d\npv : %d\n",*g_p,*pv_p);
 }
+void save(int *pv, int *gold, int *id_actuel){
+	FILE *save = fopen("file.txt", "w");
+	fprintf(save, "pv: %d, gold: %d, id_actuel: %d \n", *pv, *gold, *id_actuel);
+	fclose(save);
+
+
+}
+
 
 int main(){
 	srand(time(NULL));
@@ -75,6 +85,9 @@ int main(){
 	while (pv > 0){
 		//navigation
 		switch (chapitre_actuel){
+			case 0 :
+				save(&pv, &gold, &id_actuel);
+				break;
 			case 1 :
 				id_actuel = 1;
 				printf("Vous etes sur %s \n", chapitre[1].description);
