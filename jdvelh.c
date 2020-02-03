@@ -25,7 +25,6 @@ int deplacement(Chapitre * varChapitre, Chapitre * varChoix, Chapitre * varChoix
 	}
 	return choix_chemin;
 }
-
 void bilan(int g,int p,int * g_p,int * pv_p){
 	*g_p += g;
 	*pv_p += p;
